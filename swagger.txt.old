@@ -1,0 +1,59 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Simple API
+  description: A generated file representing a Cassandra Table definition
+schemes:
+  - http
+host: localhost
+basePath: /v1
+paths:
+  /maptest1:
+    get: 
+      summary: Retrieve some records from the Cassandra table 
+      description: Returns rows from the Cassandra table
+      parameters:
+        - name: id
+          in: query
+          description: Primary Key field in Table
+          required: true
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: A list of records
+          schema:
+            type: array
+            items:
+              required:
+                - id
+                - mymap
+              properties:
+                 id:
+                   type: integer
+                 mymap:
+                   $ref: "#/definitions/mymap"
+        400: 
+          description: Record not found
+        default:
+          description: Sorry unexpected error
+definitions:
+  simplea:
+    properties:
+       id:
+         type: integer
+       test:
+         type: string
+  simple:
+    properties:
+       id:
+         type: integer
+       floter:
+         type: number
+       lint:
+         type: array
+         items:
+           type: integer
+  mymap:
+      additionalProperties:
+         $ref: "#/definitions/simple"
