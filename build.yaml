@@ -1,0 +1,16 @@
+apiVersion: build.knative.dev/v1alpha1
+kind: Build
+metadata:
+  name: docker-build
+spec:
+  serviceAccountName: build-bot  #Service account create above
+  source:
+    git:
+      url: https://github.com/stevef1uk/helloworld-go.git
+      revision: master
+  steps:
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor:v0.1.0
+    args:  #See kaniko docs for more info about the arguments passed
+    - --dockerfile=/workspace/Dockerfile
+    - --destination=docker.io/stevef1uk/helloworld-go
