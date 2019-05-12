@@ -6,11 +6,11 @@ spec:
   serviceAccountName: build-bot  #Service account create above
   source:
     git:
-      url: https://github.com/stevef1uk/helloworld-go.git
+      url: https://github.com/stevef1uk/test4.git
       revision: master
   steps:
   - name: build-and-push
     image: gcr.io/kaniko-project/executor:v0.1.0
     args:  #See kaniko docs for more info about the arguments passed
     - --dockerfile=/workspace/Dockerfile
-    - --destination=docker.io/stevef1uk/helloworld-go
+    - --destination=docker.io/stevef1uk/test4
