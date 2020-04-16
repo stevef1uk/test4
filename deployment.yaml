@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test4
+  labels:
+    purpose: test4
+spec:
+  containers:
+  - name: test4
+    image: stevef1uk/test4
+    env:
+    - name: PORT
+      value: "5000"
+    - name: CASSANDRA_USERNAME
+      value: "cassandra"
+    - name: CASSANDRA_PASSWORD
+      value: "G2KI4cBe4c"
+    - name: CASSANDRA_SERVICE_HOST
+      value: "my-release-cassandra.default"
