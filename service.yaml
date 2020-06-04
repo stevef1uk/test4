@@ -2,9 +2,10 @@ apiVersion: v1
 kind: Service
 metadata:
   name: test4
+  namespace: openfaas-fn
 spec:
   selector:
-    app: test4
+    run: test4
   ports:
     - protocol: TCP
       port: 5000

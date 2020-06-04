@@ -8,7 +8,7 @@ ADD . /go/src/github.com/stevef1uk/test4
 # Build the outyet command inside the container.
 # (You may fetch or manage dependencies here,
 # either manually or with a tool like "godep".)
-RUN cd /go/src/github.com/stevef1uk/test4; GO111MODULE=on CGO_ENABLED=0 GOOS=linux go build -ldflags "-s" -a -installsuffix cgo -o main  cmd/simple-api-server/main.go
+RUN cd /go/src/github.com/stevef1uk/test4; GO111MODULE=on CGO_ENABLED=0 GOOS=linux go build -ldflags "-s" -a -installsuffix cgo -o main  cmd/simple-server/main.go
 
 # Final
 FROM golang:alpine

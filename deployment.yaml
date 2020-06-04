@@ -1,19 +1,26 @@
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: test4
-  labels:
-    purpose: test4
+  namespace: openfaas-fn
 spec:
-  containers:
-  - name: test4
-    image: stevef1uk/test4
-    env:
-    - name: PORT
-      value: "5000"
-    - name: CASSANDRA_USERNAME
-      value: "cassandra"
-    - name: CASSANDRA_PASSWORD
-      value: "G2KI4cBe4c"
-    - name: CASSANDRA_SERVICE_HOST
-      value: "my-release-cassandra.default"
+  selector:
+    matchLabels:
+      run: test4
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: test4
+    spec:
+      containers:
+       - name: test4
+         image: stevef1uk/test4-arm
+         env:
+         - name: PORT
+           value: "5000"
+         - name: HOST
+           value: "0.0.0.0"
+         - name: CASSANDRA_SERVICE_HOST
+          #value: "cassandra-0.openfaas-fn.svc.cluster.local"
+           value: "10.42.1.98"
